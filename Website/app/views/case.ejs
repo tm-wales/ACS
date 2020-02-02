@@ -1,0 +1,164 @@
+    <% include ./partials/header %>
+
+    <title><%= data.case.name %> | <%= data.page.title %></title>
+    <meta name="description" content="<%= data.case.text.summary %>">
+    <meta name="keywords" content="<%= data.case.name %>, <%= data.page.keywords %>">
+
+    <link rel="stylesheet" type="text/css" href="/vendors/slick/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/slick/css/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-lightbox/0.2.12/slick-lightbox.css">
+</head>
+
+<body id="fouc" class="body app js--show-nav">
+    <% include ./partials/warnings %>
+    <% include ./partials/nav %>
+    <main>
+        <header id="header" class="caseStudy__header">
+
+            <% if(typeof data.case.imagePaths.video !== 'undefined' && data.case.imagePaths.video.length > 0) { %>
+                <div class="caseStudy__header__video">
+                    <!-- class="caseStudy__header__video__vid" -->
+                    <video class="caseStudy__header__video__vid" playsinline autoplay controls loop autobuffer>
+                        <source id="header__video"class="header__video" src="<%= data.case.imagePaths.video %>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            <% } else { %>
+                <div class="caseStudy__header__image">
+                    <div class="caseStudy__header__image__before" style="background-image: url('<%= data.case.imagePaths.primary.after %>')"></div>
+                    <div class="caseStudy__header__image__after" style="background-image: url('<%= data.case.imagePaths.primary.before %>')"></div>
+                </div>
+            <% } %>
+
+            <div class="caseStudy__header__textbox u-container--small">
+                <h1 class="caseStudy__header__title"><%= data.case.name %></h1>
+            </div>
+        </header>
+
+        <section class="caseStudy__details">
+            <div class="u-container--small">
+                <div class="caseStudy__details__texts">
+                    <h2 class="caseStudy__header__category">
+                        <% for(var i=0; i < data.case.service.length; i++) { %>
+                        <a href="/services/<%= data.case.service[i] %>" class="caseStudy__header__category__item"><%= data.case.service[i] %></a>
+                        <% } %>
+                    </h2>
+                    <p class="caseStudy__details__text"><%-data.case.text.summary%></p>
+                    <p class="caseStudy__details__text"><%-data.case.text.other %></p>
+                </div>
+
+                <div class="caseStudy__details__main">
+                    <div class="caseStudy__details__client">
+                        <span class="caseStudy__details__client__title">Client: </span>
+                        <span class="caseStudy__details__client__name"><%= data.case.client %></span>
+                    </div>
+                </div>
+
+                <% if(data.case.keyFacts.length !== 0) { %>
+                <ul class="caseStudy__keyfacts__list">
+                    <% for(var i=0; i < data.case.keyFacts.length; i++) { %>
+                    <li class="caseStudy__keyfact">
+                        <div class="caseStudy__keyfact__main"><%= data.case.keyFacts[i].main %></div>
+                        <div class="caseStudy__keyfact__sub"><%= data.case.keyFacts[i].sub %></div>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } %>
+            </div>
+            <ul class="caseStudy__images__list">
+            <% for(var i=0; i < data.case.imagePaths.other.length; i++) { %>
+                <li class="caseStudy__images__list__container">
+                    <a href="<%=data.case.imagePaths.other[i].img %>">
+                        <!-- <div class="caseStudy__images__list__type"><%= data.case.imagePaths.other[i].type %></div> -->
+                        <div class="caseStudy__images__list__image" style="background-image: url('<%=data.case.imagePaths.other[i].img %>')"></div>
+                    </a>
+                </li>
+            <% } %>
+            </ul>
+
+            <% if(data.case.testimonials.length !== 0) { %>
+            <ul class="caseStudy__testimonials__list">
+                <% for(var i=0; i < data.case.testimonials.length; i++) { %>
+                <li class="caseStudy__testimonial">
+                    <% if(typeof data.case.testimonials[i].person.image !== 'undefined') { %>
+                    <img class="caseStudy__testimonial__image" src="<%= data.case.testimonials[i].person.image %>">
+                    <% } %>
+                    <blockquote class="caseStudy__testimonial__text">
+                        <%= data.case.testimonials[i].testimonial %>
+                    </blockquote>
+                    <div class="caseStudy__testimonial__person">
+                        <div class="caseStudy__testimonial__person__name"><%= data.case.testimonials[i].person.name %></div>
+                        <div class="caseStudy__testimonial__person__position"><%= data.case.testimonials[i].person.position %> @ <%= data.case.testimonials[i].person.company %></div>
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+            <% } %>
+
+            <% if(data.case.awards.length !== 0) { %>
+            <div class="caseStudy__awards">
+                <h3 class="caseStudy__awards__title">Awards & Recognitions</h3>
+                <ul class="caseStudy__awards__list">
+                    <% for(var i=0; i < data.case.awards.length; i++) { %>
+                    <li class="caseStudy__award">
+                        <img class="caseStudy__award__image" src="<%= data.case.awards[i].image %>">
+                        <div class="caseStudy__award__name"><%= data.case.awards[i].name %></div>
+                    </li>
+                    <% } %>
+                </ul>
+                <% } %>
+            </div>
+
+            <a class="caseStudy__link btn btn--primary btn--invert" href="/our-work"><div class="btn__text">Back to Our Work</div><div class="btn__icon"><i class="fas fa-caret-right"></i></div></a>
+        </section>
+    </main>
+    <% include ./partials/footer %>
+</body>
+
+<% include ./partials/scriptsFooter %>
+
+<script type="text/javascript" src="/vendors/slick/js/slick.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-lightbox/0.2.12/slick-lightbox.min.js"></script>
+
+<script>
+    $('.caseStudy__images__list').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        dots: true,
+        centerMode: true,
+        centerPadding: '40px',
+        focusOnSelect: true,
+        responsive: [
+            {
+                breakpoint: 1300,
+                settings: {
+                    slidesToShow: 4,
+                }
+            },
+            {
+                breakpoint: 1000,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 500,
+                settings: {
+                    slidesToShow: 1,
+                }
+            }
+        ]
+    });
+
+    $('.caseStudy__images__list').slickLightbox({
+        itemSelector        : 'a',
+        navigateByKeyboard  : true
+    });
+
+</script>

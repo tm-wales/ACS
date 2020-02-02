@@ -1,0 +1,263 @@
+.products {
+    max-width: 150rem;
+    margin: 0 auto;
+    background: rgba($color-white,.6);
+
+    &__grid {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5rem;
+        justify-content: center;
+        text-align: center;
+
+        @include respond('900') {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include respond('600') {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.product {
+    position: relative;
+    text-decoration: none;
+    transition: all .5s;
+    height: 50rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    // border: .3rem solid $color-secondary;
+    box-shadow: 2px 2px 10px $color-shadow;
+    overflow: hidden;
+
+    &__title {
+        position: absolute;
+        transition: all .5s;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2.5rem;
+        background-color: $color-primary;
+        padding: 0 2rem;
+        margin-right: 1rem;
+        text-transform: uppercase;
+        color: $color-white;
+        z-index: 2;
+        border: 2px solid transparent;
+    }
+
+    &__details {
+        position: absolute;
+        clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 100%);
+        bottom: 0;
+        left: 0;
+        width: 110%;
+        height: 50%;
+        background-image: linear-gradient(to bottom, transparent 0%, rgba($color-white, .2) 4%,rgba($color-white, 1) 6%);
+        padding: 5rem;
+        padding-bottom: 1rem;
+
+        & li {
+            position: relative;
+            text-align: left;
+            margin-top: 1rem;
+            padding-left: 3rem;
+            color: $color-grey-dark;
+
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: "\25C6";
+                color: $color-primary-dark; /* or whatever color you prefer */
+                font-size: inherit;
+            }
+        }
+    }
+
+    &:hover,
+    &:active {
+        & .product__title {
+            background-color: $color-white;
+            border: 2px solid $color-primary;
+            color: $color-primary;
+        }
+    }
+}
+
+
+.process {
+    max-width: 150rem;
+    margin: 0 auto;
+    background: rgba($color-white,.6);
+
+    &__grid {
+        display: grid;
+        grid-column-gap: 5rem;
+        grid-row-gap: 5rem;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        justify-content: center;
+    }
+
+    &__text {
+        margin: 3rem 2rem;
+    }
+
+    &__step {
+        margin: 2rem 0;
+        text-align: center;
+
+        &__icon {
+            height: 10rem;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        &__number {
+            font-family: 'Arkitech', sans-serif;
+            color: $color-black;
+            font-weight: bold;
+            text-align: center;
+            font-size:  5rem;
+        }
+
+        &__title {
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+            color: $color-primary-dark;
+        }
+
+        &__text {
+            text-align: left;
+            font-size: 1.4rem;
+        }
+    }
+}
+
+.news {
+    text-align: center;
+    margin: 0rem auto;
+
+    &__grid {
+        display: grid;
+        margin: 0 auto;
+        grid-column-gap: 5rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+
+        @include respond('1000') {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include respond('ipad') {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__link {
+        margin-top: 3rem;
+    }
+
+    &__item {
+        position: relative;
+        margin-top: 3rem;
+        height: 40rem;
+        width: 100%;
+        background-color: $color-white;
+        font-size: 1.6rem;
+        box-shadow: 2px 2px 10px $color-shadow;
+        text-align: left;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        
+        @include respond('1000') {
+            height: 35rem;
+        }
+    
+        @include respond('ipad') {
+            height: 35rem;
+        }
+    
+        @include respond('phoneXL') {
+            height: 30rem;
+            font-size: 1.2rem;
+        }
+    
+        @include respond('iphone5') {
+            height: 25rem;
+        }
+
+
+        &__image {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            padding: 1rem 0;
+            overflow: hidden;
+            color: $color-white;
+            // background-image: linear-gradient(180deg, transparent 0%,transparent 80%,$color-primary-dark 80%,$color-primary-dark 100%);
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        &__title {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: .5rem 1rem;
+            text-align: right;
+            // font-size: 2rem;
+            background-color: $color-primary;
+            width: 100%;
+
+            &::after {
+                position: absolute;
+                bottom: .5rem;
+                right: 1rem;
+                height: .2rem;
+                background-color: $color-white;
+                content: " ";
+                width: 0;
+                margin: 0rem 0;
+                transition: all .3s;
+            }
+        }
+
+        &__link {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            // background-color: $color-primary;
+            color: $color-primary;
+            width: 3rem;
+            height: 3rem;
+            text-align: center;
+            font-size: 2.5rem;
+
+            transition: .2s all;
+
+            &:hover {
+                color: $color-primary-clear;
+            }
+        }
+
+        &__text {
+            margin: 1rem;
+            color: $color-text-dark;
+        }
+
+        &:hover,
+        &:active {
+            & .news__item__title::after {
+                width: calc(100% - 2rem);
+            }
+        }
+    }
+}

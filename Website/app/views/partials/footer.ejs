@@ -1,0 +1,51 @@
+<footer class="footer">
+    <div class="footer__accreditations">
+        <ul>
+            <li class="footer__accreditation"><a target="_blank" class="footer__accreditation__link" href="#"><img class="footer__accreditation__image" src="/resources/img/accreditations/chas.png"></a></li>
+            <li class="footer__accreditation"><a target="_blank" class="footer__accreditation__link" href="#"><img class="footer__accreditation__image" src="/resources/img/accreditations/cscs.png"></a></li>
+            <li class="footer__accreditation"><a target="_blank" class="footer__accreditation__link" href="#"><img class="footer__accreditation__image" src="/resources/img/accreditations/doff.png"></a></li>
+            <li class="footer__accreditation"><a target="_blank" class="footer__accreditation__link" href="#"><img class="footer__accreditation__image" src="/resources/img/accreditations/IPAF-logo.jpg"></a></li>
+            <li class="footer__accreditation"><a target="_blank" class="footer__accreditation__link" href="#"><img class="footer__accreditation__image" src="/resources/img/accreditations/TORC-Logo.png"></a></li>
+        </ul>
+    </div>
+    <div class="footer__top">
+        <div class="u-container--small footer__top__grid">
+            <a href="/">
+                <img class="footer__image" src="/resources/img/Logo_only_white.png">
+            </a>
+            <div class="footer__text">
+                <div class="footer__text__title">
+                    About Architectual Cleaning Services limited (Registration No. 10051955)
+                </div>
+                <div class="footer__text__company">
+                        Architectural Cleaning Services Ltd is an industry-leading company focussing on the cleaning and care of structural façades.
+                        In a world where we are surrounded by structures, with modern buildings neighbouring much older and historical buildings, all these structures and their varying façades need a specialist and dynamic approach to cleaning.
+                    <!-- <span>Seven Oaks Modular Limited</span> -->
+                </div>
+            </div>
+            <div class="footer__social">
+                <a class="footer__btn btn btn--primary" href="#contact-us"><div class="btn__text">Contact Us</div><div class="btn__icon"><i class="fas fa-caret-right"></i></div></a>
+                <!-- <a class="footer__btn btn btn--primary" href="/newsletter"><div class="btn__text">News Sign Up</div><div class="btn__icon"><i class="fas fa-caret-right"></i></div></a> -->
+                <ul class="footer__socials">
+                <% for(var i=0; i < data.social.length; i++) { %>
+                    <li class="footer__socials__link"><a target="_blank" href="<%= data.social[i].link %>"><%- data.social[i].icon %></a></li>
+                <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <div class="u-container--small u-relative">
+            <ul class="footer__links">
+            <% for(var i=0; i < data.policy.length; i++) { %>
+                <li class="footer__link"><a href="/policies/<%= data.policy[i].route %>"><%= data.policy[i].name %></a></li>
+            <% } %>
+            </ul>
+            <div class="footer__copyright">All contents ©2018 Architectual Cleaning Services ltd, Inc. All rights reserved.</div>
+            <a class="techmeleon__link" target="_blank" href="https://www.techmeleon.co.uk">
+                <img class="techmeleon__logo" src="/vendors/pygmy/img/logo/logo-full.svg">
+            </a>
+        </div>
+    </div>
+</footer>
+<% include ./contactus %>

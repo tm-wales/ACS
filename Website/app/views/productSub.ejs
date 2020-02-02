@@ -1,0 +1,43 @@
+<% include ./partials/header %>
+
+<title><%= data.group.subProducts[1].name %> | <%= data.group.name %> | <%= data.page.title %></title>
+<meta name="description" content="<%= data.page.description %>">
+<meta name="keywords" content="<%= data.page.keywords %>">
+</head>
+
+<body id="fouc" class="body app js--show-nav">
+<% include ./partials/warnings %>
+<% include ./partials/nav %>
+<main>
+    <header id="header" class="productPage__header">
+        <% if(data.group.subProducts[1].mainDisplay.type == 'Image') { %>
+            <div class="productPage__header__image" style="background-image: url('<%= data.group.subProducts[1].mainDisplay.path %>')"></div>
+        <% } else { %>
+            <video class="productPage__header__video" playsinline autoplay muted loop autobuffer>
+                <source class="productPage__header__videoSource" src="<%= data.group.subProducts[1].mainDisplay.path %>" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        <% } %>
+        <div class="productPage__header__textbox u-container--small">
+            <h1 class="productPage__header__title"><%= data.group.subProducts[1].name %></h1>
+        </div>
+    </header>
+
+    <section class="productPage__section u-container--mid">
+        <div class="productPage__summaryMain productPage__format"><%- data.group.subProducts[1].content.summary %></div>
+
+        <ul class="productPage__keyfacts">
+        <% if(typeof data.group.subProducts[1].keyFacts !== 'undefined' && data.group.subProducts[1].keyFacts !== 'null') { %>
+            <% for(var j=0; j < data.group.subProducts[1].keyFacts.length; j++) { %>
+                <li class="productPage__keyFact"> <%= data.group.subProducts[1].keyFacts[j]  %> </li>
+            <% } %>
+        <% } %>
+        </ul>
+
+        <div class="productPage__content productPage__format"><%- data.group.subProducts[1].content.main %></div>
+    </section>
+</main>
+<% include ./partials/footer %>
+</body>
+
+<% include ./partials/scriptsFooter %>

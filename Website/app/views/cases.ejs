@@ -1,0 +1,95 @@
+    <% include ./partials/header %>
+
+    <title><%= data.page.title %></title>
+    <meta name="description" content="<%= data.page.description %>">
+    <meta name="keywords" content="<%= data.page.keywords %>">
+
+    <link rel="stylesheet" type="text/css" href="/vendors/slick/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/slick/css/slick-theme.css">
+</head>
+
+<body id="fouc" class="body app js--show-nav">
+    <% include ./partials/warnings %>
+    <% include ./partials/nav %>
+    <main>
+        <header id="header" class="header">
+            <div id="header__hero" class="header__hero header__hero--other">
+                <div class="header__slick">
+                <% for(var i=0; i < data.cases.length; i++) { %>
+                    <a class="header__cases" href="/our-work/<%= data.cases[i].name %>">
+                        <div class="case__text">
+                            <div class="case__link">
+                                <span class="case__link__text"><%= data.cases[i].name %></span> <span class="case__link__icon"><i class="fas fa-caret-right"></i></span>
+                            </div>
+                        </div>
+                        <div class="case__category"><%= data.cases[i].service %></div>
+                        <div class="case__image">
+                            <div class="case__image__before" style="background-image: url('<%= data.cases[i].imagePaths.primary.after %>')"></div>
+                            <div class="case__image__after" style="background-image: url('<%= data.cases[i].imagePaths.primary.before %>')"></div>
+                        </div>
+                    </a>
+                <% } %>
+                </div>
+                <div class="header__overlay">
+                    <div class="header__text">
+                        <h1 id="headerTitle" class="header__title__other contentEditable"><%= data.page.content.headerTitle.text %></h1>
+                        <h2 id="headerSubtitle" class="header__subtitle__other contentEditable"><%= data.page.content.headerSubtitle.text %></h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="start" class="section cases">
+            <div class="cases__filter">
+                <button type="button" class="cases__filter__item" data-filter="all">
+                    All
+                </button>
+            <% for(var i=0; i < data.cases.services.length; i++) { %>
+                <button type="button"  class="cases__filter__item" data-filter=".case__filter__<%= data.cases.services[i].replace(/\s+/, '') %>">
+                    <%= data.cases.services[i] %>
+                </button>
+            <% } %>
+            </div>
+            <div class="cases__container">
+            <% for(var i=0; i < data.cases.length; i++) { %>
+                <% var filter = '' %>
+                <% for(var j=0; j < data.cases[i].service.length; j++) { %>
+                    <% filter = filter + 'case__filter__' + data.cases[i].service[j] + ' ' %>
+                <% } %>
+                <a class="case mix <%= filter %>" href="/our-work/<%= data.cases[i].name %>">
+                    <div class="case__text">
+                        <div class="case__link">
+                            <span class="case__link__text"><%= data.cases[i].name %></span> <span class="case__link__icon"><i class="fas fa-caret-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="case__category"><%= data.cases[i].service %></div>
+                    <div class="case__hidden">
+                        <div class="case__summary"><%= data.cases[i].text.summary %></div>
+                    </div>
+                    <div class="case__image">
+                        <div class="case__image__before" style="background-image: url('<%= data.cases[i].imagePaths.primary.after %>')"></div>
+                        <div class="case__image__after" style="background-image: url('<%= data.cases[i].imagePaths.primary.before %>')"></div>
+                    </div>
+                </a>
+            <% } %>
+            </div>
+        </section>
+    </main>
+    <% include ./partials/footer %>
+</body>
+
+<% include ./partials/scriptsFooter %>
+<script type="text/javascript" src="/vendors/slick/js/slick.min.js"></script>
+<script>
+    var containerEl = document.querySelector('.cases__container');
+
+    var mixer = mixitup(containerEl);
+
+    $('.header__slick').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: false
+    });
+</script>
