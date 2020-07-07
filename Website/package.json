@@ -29,7 +29,7 @@
     "morgan": "^1.9.1",
     "node-sass": "^4.9.4",
     "nodemailer": "*",
-    "npm": "^6.4.1",
+    "npm": "^6.14.6",
     "passport": "*",
     "passport-local": "*",
     "passport-local-mongoose": "*",
